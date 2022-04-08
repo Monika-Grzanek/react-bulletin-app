@@ -10,7 +10,7 @@ const Homepage = () => {
             <h1>All Posts:</h1>
         </div>
         <Container>
-            {posts && posts.map(post => <Posts key={post.id} {...post} /> )}
+            {posts.map(post => <Posts key={post.id} {...post} /> )}
         </Container>
     </div>
 }
