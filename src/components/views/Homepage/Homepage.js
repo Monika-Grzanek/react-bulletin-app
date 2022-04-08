@@ -7,7 +7,7 @@ const Homepage = () => {
     const posts = useSelector(getAllPosts);
     <div>
         <div>
-            <h1>All Tables:</h1>
+            <h1>All Posts:</h1>
         </div>
         <Container>
             {posts && posts.map(post => <Posts key={post.id} {...post} /> )}
