@@ -1,6 +1,6 @@
 import {combineReducers, createStore, compose, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
-import { initialState } from './initialState';
+import initialState from './initialState';
 import postsReducer from './postsRedux';
 
 const subreducers = {

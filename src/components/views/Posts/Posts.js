@@ -7,7 +7,7 @@ const Posts = ({...post}) => {
             <ListGroup.Item>
                 <Row >
                     <Col className="justify-content-start" xs lg="10">
-                        <h4 className="d-inline"> {post.title}</h4>
+                        <h5 className="d-inline"> {post.title}</h5>
                     </Col>
                     <Col className="justify-content-end" xs lg="2">
                         <Button as={Link} to={`/post/${post.id}`} variant="primary"  >Show more</Button>

@@ -1,6 +1,6 @@
-export const initialState = {
-    posts: {
-      data: [
+const initialState = {
+    posts: 
+      [
         {
           id: 1, 
           title: 'Car for sale',
@@ -25,11 +25,7 @@ export const initialState = {
         location: 'Cracow',
         status: 'published',   
       }
-      ],
-      loading: {
-        active: false,
-        error: false,
-      },
-    },
+    ],
   };
   
+  export default initialState;

@@ -1,6 +1,7 @@
 //selectors
-export const getAllPosts = state => state.posts.data;
-
+export const getAllPosts = state => state.posts;
+export const getPostById = ({ posts }, id) => posts.find(post => post.id === id);
+ 
 /* action name creator */
 const reducerName = 'posts';
 const createActionName = name => `app/${reducerName}/${name}`;
@@ -20,37 +21,9 @@ export const fetchError = payload => ({ payload, type: FETCH_ERROR });
 /* reducer */
 const postsReducer = (statePart = [], action = {}) => {
   switch (action.type) {
-    case FETCH_START: {
-      return {
-        ...statePart,
-        loading: {
-          active: true,
-          error: false,
-        },
-      };
-    }
-    case FETCH_SUCCESS: {
-      return {
-        ...statePart,
-        loading: {
-          active: false,
-          error: false,
-        },
-        data: action.payload,
-      };
-    }
-    case FETCH_ERROR: {
-      return {
-        ...statePart,
-        loading: {
-          active: false,
-          error: action.payload,
-        },
-      };
-    }
     default:
       return statePart;
-  }
+  };
 };
 
 export default postsReducer;

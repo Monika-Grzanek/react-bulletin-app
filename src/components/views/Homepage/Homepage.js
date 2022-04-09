@@ -5,14 +5,16 @@ import { getAllPosts } from './../../../redux/postsRedux';
 
 const Homepage = () => {
     const posts = useSelector(getAllPosts);
-    <div>
+    return(
         <div>
-            <h1>All Posts:</h1>
-        </div>
-        <Container>
-            {posts.map(post => <Posts key={post.id} {...post} /> )}
-        </Container>
-    </div>
+            <div>
+                <h1>All Posts:</h1>
+            </div>
+            <Container>
+                {posts.map(post => <Posts key={post.id} {...post} /> )}
+            </Container>
+        </div>    
+    )
 }
 
 export default Homepage;
