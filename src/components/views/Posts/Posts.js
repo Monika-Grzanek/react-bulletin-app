@@ -1,20 +1,18 @@
-import { ListGroup, Row, Col, Button } from "react-bootstrap";
+import { Card, Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const Posts = ({...post}) => {
     return(
-        <ListGroup >
-            <ListGroup.Item>
-                <Row >
-                    <Col className="justify-content-start" xs lg="10">
-                        <h5 className="d-inline"> {post.title}</h5>
-                    </Col>
-                    <Col className="justify-content-end" xs lg="2">
-                        <Button as={Link} to={`/post/${post.id}`} variant="primary"  >Show more</Button>
-                    </Col>
-                </Row>
-            </ListGroup.Item>           
-        </ListGroup>
+        <Col sm={12} md={6} lg={4}>
+            <Card style={{ width: '18rem' }}>
+                <Card.Img variant="top" src={post.photo} />
+                <Card.Body>
+                    <Card.Title>{post.title}</Card.Title>
+                    <Card.Text>{post.description}</Card.Text>
+                    <Button as={Link} to={`/post/${post.id}`} variant="primary">Read more</Button>
+                </Card.Body>
+            </Card>
+        </Col>
     )
 }
 

@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { Container } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import Posts from "../Posts/Posts";
 import { getAllPosts } from './../../../redux/postsRedux';
 
@@ -11,7 +11,9 @@ const Homepage = () => {
                 <h1>All Posts:</h1>
             </div>
             <Container>
-                {posts.map(post => <Posts key={post.id} {...post} /> )}
+                <Row>
+                    {posts.map(post => <Posts key={post.id} {...post} /> )}
+                </Row>
             </Container>
         </div>    
     )

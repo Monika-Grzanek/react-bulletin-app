@@ -13,15 +13,13 @@ function App() {
   return (
     <div className="App">
       <Container>
-        <MainLayout>
           <Routes>
-              <Route path="/" element={<Homepage />} />
+              <Route path="/" element={<MainLayout />} />
               <Route path="/post/add" element={<PostAdd />} />
               <Route path="/post/:id" element={<Post />} />
               <Route path="/post/:id/edit" element={ <PostEdit /> } />
               <Route path="*" element={ < NotFound /> } />
             </Routes>
-        </MainLayout>
       </Container>
     </div>
   );
