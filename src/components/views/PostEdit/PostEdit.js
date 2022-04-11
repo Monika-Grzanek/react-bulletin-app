@@ -1,6 +1,10 @@
+import PostForm from "../PostForm/PostForm";
+
 const PostEdit = () => {
     return(
-        <h1>Edit Post</h1>
+        <div>
+            <PostForm actionText='Update' />
+        </div>
     )
 }
 

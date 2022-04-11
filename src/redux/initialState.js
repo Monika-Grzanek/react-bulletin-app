@@ -2,9 +2,9 @@ const initialState = {
     posts: 
       [
         {
-          id: 1, 
+          id: '1', 
           title: 'Car for sale',
-          description: 'Renault Clio for sale, year 2014. 5-seater car. Roomy trunk. Very good condition.', 
+          description: 'Renault Megane for sale, year 2014. 5-seater car. Roomy trunk. Very good condition.', 
           price: 10000,
           photo: 'https://www.pexels.com/pl-pl/zdjecie/biale-renault-megane-5-drzwiowy-hatchback-1005633/',
           publishedDate: new Date('02-02-2022'),
@@ -15,7 +15,7 @@ const initialState = {
           status: 'published',   
       },
       {
-        id: 2, 
+        id: '2', 
         title: 'Apartment for rent',
         description: 'I am renting a 2-room, cozy apartment in the city center. The apartment is fully equipped.', 
         price: 2500,

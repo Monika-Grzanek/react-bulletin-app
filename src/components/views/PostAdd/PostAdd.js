@@ -1,6 +1,10 @@
+import PostForm from "../PostForm/PostForm";
+
 const PostAdd = () => {
     return (
-        <h1>Add post</h1>
+        <div>
+            <PostForm actionText='Save' />
+        </div>
     )
 }
 
