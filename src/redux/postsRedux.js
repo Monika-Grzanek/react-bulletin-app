@@ -1,3 +1,5 @@
+import shortid from 'shortid';
+
 //selectors
 export const getAllPosts = state => state.posts;
 export const getPostById = ({ posts }, id) => posts.find(post => post.id === id);
@@ -7,20 +9,22 @@ const reducerName = 'posts';
 const createActionName = name => `app/${reducerName}/${name}`;
 
 /* action types */
-const FETCH_START = createActionName('FETCH_START');
-const FETCH_SUCCESS = createActionName('FETCH_SUCCESS');
-const FETCH_ERROR = createActionName('FETCH_ERROR');
+const ADD_POST = createActionName('ADD_POST');
+const EDIT_POST = createActionName('EDIT_POST');
 
 /* action creators */
-export const fetchStarted = payload => ({ payload, type: FETCH_START });
-export const fetchSuccess = payload => ({ payload, type: FETCH_SUCCESS });
-export const fetchError = payload => ({ payload, type: FETCH_ERROR });
+export const addPost = (payload) => ({ type: ADD_POST, payload });
+export const editPost = (payload) => ({type: EDIT_POST, payload});
 
 /* thunk creators */
 
 /* reducer */
 const postsReducer = (statePart = [], action = {}) => {
   switch (action.type) {
+    case ADD_POST:
+      return [...statePart, {id: shortid(), ...action.payload}] ;
+      case EDIT_POST:
+        return statePart.map(post => (post.id === action.payload.id ? { ...post, ...action.payload } : post));
     default:
       return statePart;
   };

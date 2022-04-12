@@ -12,7 +12,7 @@ const initialState = {
           author: 'JohnSmith@gmail.com',
           contact: 676854332,
           location: 'Warsaw',
-          status: 'published',   
+          status: 'Published',   
       },
       {
         id: '2', 
@@ -25,7 +25,7 @@ const initialState = {
         author: 'SaraWilson@gmail.com',
         contact: 555678943,
         location: 'Cracow',
-        status: 'published',   
+        status: 'Published',   
       }
     ],
   };

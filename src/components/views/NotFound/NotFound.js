@@ -1,6 +1,11 @@
+import NavBar from "../NavBar/NavBar";
+
 const NotFound = () => {
     return(
-        <h1>Not Found</h1>
+        <>
+            <NavBar />
+            <h1>404 Not Found</h1>
+        </>
     )
 }
 
