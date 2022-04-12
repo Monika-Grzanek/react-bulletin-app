@@ -4,11 +4,16 @@ import { getPostById } from "../../../redux/postsRedux";
 import { Card, Button } from "react-bootstrap";
 import { DateToStr } from './../../../utils/DateToString';
 import NavBar from "../NavBar/NavBar";
+import { useState } from "react";
 
 const Post = () => {
     const {id} = useParams();
     const postData = useSelector(state => getPostById(state, id));
     //if(!postData) return <Navigate to='/' />
+
+    const [isAuthor, setIsAuthor] = useState(true);
+    const [isAdmin, setIsAdmin] = useState(false);
+
     return(
         <>
             <NavBar />
@@ -28,7 +33,7 @@ const Post = () => {
                         <p><b>Contact: </b>{postData.contact}</p>
                     </Card.Text>
                     </Card.Body>
-                    <Button as={Link} to={`/post/${postData.id}/edit`}>Edit post</Button>
+                    {(isAdmin || isAuthor) && <Button as={Link} to={`/post/${postData.id}/edit`}>Edit post</Button>}
                 </Card>
             </div>
         </>

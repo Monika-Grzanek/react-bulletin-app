@@ -1,6 +1,11 @@
 const initialState = {
-    posts: 
-      [
+    posts: {
+      user: {
+        logged: true,
+        idUser: 'user1',
+        role: 'user'
+      },
+      data:[
         {
           id: '1', 
           title: 'Car for sale',
@@ -9,10 +14,13 @@ const initialState = {
           photo: 'https://www.pexels.com/pl-pl/zdjecie/biale-renault-megane-5-drzwiowy-hatchback-1005633/',
           publishedDate: new Date('02-02-2022'),
           updatedDate: new Date('06-03-2022'),
+          userId: 'user1',
           author: 'JohnSmith@gmail.com',
           contact: 676854332,
           location: 'Warsaw',
           status: 'Published',   
+          idUser: 'user1',
+          role: 'user'
       },
       {
         id: '2', 
@@ -26,8 +34,11 @@ const initialState = {
         contact: 555678943,
         location: 'Cracow',
         status: 'Published',   
+        idUser: 'user2',
+        role: 'admin'
       }
     ],
-  };
+  }
+};
   
   export default initialState;

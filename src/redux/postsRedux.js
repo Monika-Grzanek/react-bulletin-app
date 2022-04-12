@@ -1,9 +1,11 @@
 import shortid from 'shortid';
 
 //selectors
-export const getAllPosts = state => state.posts;
-export const getPostById = ({ posts }, id) => posts.find(post => post.id === id);
- 
+export const getAllPosts = state => state.posts.data;
+export const getPostById = ({ posts }, id) => posts.data.find(post => post.id === id);
+export const getIdUser = state => state.posts.user.idUser;
+export const getPostByAuthor = ({posts}, idUser) => posts.data.find(post => post.idUser === idUser);
+
 /* action name creator */
 const reducerName = 'posts';
 const createActionName = name => `app/${reducerName}/${name}`;
@@ -22,9 +24,9 @@ export const editPost = (payload) => ({type: EDIT_POST, payload});
 const postsReducer = (statePart = [], action = {}) => {
   switch (action.type) {
     case ADD_POST:
-      return [...statePart, {id: shortid(), ...action.payload}] ;
+      return {...statePart, data: [...statePart.data, {id: shortid(), ...action.payload}]} ;
       case EDIT_POST:
-        return statePart.map(post => (post.id === action.payload.id ? { ...post, ...action.payload } : post));
+        return {...statePart, data: statePart.data.map(post => (post.id === action.payload.id ? { ...post, ...action.payload } : post))};
     default:
       return statePart;
   };
