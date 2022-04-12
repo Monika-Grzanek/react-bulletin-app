@@ -13,6 +13,7 @@ const NavBar = () => {
     const logOut = e => {
         e.preventDeafault();
         setLogged(false);
+        console.log('test')
     }
 
     return(
@@ -24,7 +25,7 @@ const NavBar = () => {
                     {!logged && <Nav.Link as={NavLink} to='www.google.pl' onSubmit={logIn}>Log in</Nav.Link>}
                     {logged && <Nav.Link as={NavLink} to='/post/add'>Add post</Nav.Link>}
                     {logged && <Nav.Link as={NavLink} to='/myposts'>My posts</Nav.Link>}
-                    {logged && <Nav.Link as={NavLink} to="/" onSubmit={logOut}>Log out</Nav.Link>}
+                    {logged && <Nav.Link onSubmit={logOut} as={NavLink} to="/" >Log out</Nav.Link>}
                 </Nav>
             </Container>
         </Navbar>

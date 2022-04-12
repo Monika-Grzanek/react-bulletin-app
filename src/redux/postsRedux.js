@@ -3,8 +3,8 @@ import shortid from 'shortid';
 //selectors
 export const getAllPosts = state => state.posts.data;
 export const getPostById = ({ posts }, id) => posts.data.find(post => post.id === id);
-export const getIdUser = state => state.posts.user.idUser;
-export const getPostByAuthor = ({posts}, idUser) => posts.data.find(post => post.idUser === idUser);
+export const getPostsByAuthor = ({posts}) => posts.data.filter(post => post.idUser === posts.user.idUser);
+
 
 /* action name creator */
 const reducerName = 'posts';

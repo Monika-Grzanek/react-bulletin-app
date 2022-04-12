@@ -2,14 +2,13 @@ import NavBar from "../NavBar/NavBar";
 import styles from './MyPosts.module.scss';
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import {getPostByAuthor, getIdUser} from './../../../redux/postsRedux';
+import {getPostsByAuthor} from './../../../redux/postsRedux';
 import { Container, Row } from "react-bootstrap";
 import Posts from './../Posts/Posts';
 
 const MyPosts = () => {
     //const {idUser} = useParams();
-    const idUser = useSelector(getIdUser);
-    const postByAuthor = useSelector(state => getPostByAuthor(state, idUser));
+    const postByAuthor = useSelector(state => getPostsByAuthor(state));
 
     return(
         <>

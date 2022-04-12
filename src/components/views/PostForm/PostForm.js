@@ -1,5 +1,5 @@
 import { Form, Button } from "react-bootstrap";
-import DatePicker from "react-datepicker";
+import PropTypes from 'prop-types';
 import 'react-quill/dist/quill.snow.css';
 import "react-datepicker/dist/react-datepicker.css";
 import { useForm } from "react-hook-form";
@@ -18,22 +18,23 @@ const PostForm = ({actionText, action, ...post}) => {
     const [contact, setContact] = useState(post.contact || '');
     const [photo, setPhoto] = useState(post.photo || '');
     const [publishedDate, setPublishedDate] = useState(post.publishedDate || '');
-    const [dateError, setDateError] = useState(false);
     const [updatedDate, setUpdatedDate] = useState(post.updatedDate || '');
-    const [dateUpdatedError, setDateUpdatedError] = useState(false);
 
     const handleSubmit = e => {
-        setDateError(!publishedDate)
-        setDateUpdatedError(!updatedDate)
-        if(publishedDate && updatedDate){
-            action({title, description, price, location, status, author, contact, photo, publishedDate, updatedDate });
-        }  
+        const data = { title, description, price, location, status, author, contact, photo };
+        if (post.id) data.updatedDate = new Date();
+        else {
+            data.publishedDate = new Date();
+            data.updatedDate = data.publishedDate;
+        }
+        action(data);
+        console.log(data);
     }
     return (
         <div className="posts-navi d-flex justify-content-around" >
             <Form onSubmit={validate(handleSubmit)} >
-                <Form.Group className="mb-3" controlId="formBasic" style={{ width: '30rem' }}>
-                    <Form.Control type="file" /*value={photo} onChange={e => setPhoto(e.target.value)} */ />
+                <Form.Group className="mb-3" style={{ width: '30rem' }}>
+                    <Form.Control type="file" selected={photo} onChange={e => setPhoto(e.target.value)}  />
                     <Form.Control type="text" placeholder="Title of your advertisement" {...register("title", { required: true, minLength: 10 })} value={title} onChange={e => setTitle(e.target.value)}/>
                     {errors.title && <small className="d-block form-text text-danger mt-2">Title is too short (min is 10 signs)</small>}
                     <Form.Control as="textarea" rows={5} placeholder="Describe your advertisement" {...register("description", { required: true, minLength: 20 })} value={description} onChange={e => setDescription(e.target.value)} />
@@ -49,10 +50,8 @@ const PostForm = ({actionText, action, ...post}) => {
                     {errors.email && <small className="d-block form-text text-danger mt-2">Email is requied</small>}
                     <Form.Control type="number" placeholder="Phone number" {...register("phone", { required: true })} value={contact} onChange={e => setContact(e.target.value)}/>
                     {errors.phone && <small className="d-block form-text text-danger mt-2">Phone number is required</small>}
-                    <Form.Label > Published date: <DatePicker {...register("publishedDate", { required: true })} selected={publishedDate} onChange={(date) => setPublishedDate(date)}/></Form.Label> 
-                    {dateError && <small className="d-block form-text text-danger mt-2">Published date is required</small>}
-                    <Form.Label>Update date: <DatePicker {...register("updatedDate", { required: true })} selected={updatedDate} onChange={(date) => setUpdatedDate(date)} /></Form.Label>
-                    {dateUpdatedError && <small className="d-block form-text text-danger mt-2">Updated date is required</small>}
+                    <Form.Label > Published date: <input type="date" disabled {...register("publishedDate", { required: false })} selected={publishedDate} onChange={(e) => setPublishedDate(e.target.value)}/></Form.Label> 
+                    <Form.Label>Update date: <input type="date" disabled {...register("updatedDate", { required: false })} selected={updatedDate} onChange={(e) => setPublishedDate(e.target.value)} /></Form.Label>   
                 </Form.Group>
                 <Button variant="primary" type="submit">
                     {actionText}
@@ -61,6 +60,16 @@ const PostForm = ({actionText, action, ...post}) => {
         </div>
  
     )
+}
+
+PostForm.propTypes = {
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    location: PropTypes.string.isRequired,
+    author: PropTypes.string.isRequired,
+    contact: PropTypes.number.isRequired,
+    handleSubmit: PropTypes.func
 }
 
 export default PostForm;
