@@ -34,7 +34,7 @@ const PostForm = ({actionText, action, ...post}) => {
         <div className="posts-navi d-flex justify-content-around" >
             <Form onSubmit={validate(handleSubmit)} >
                 <Form.Group className="mb-3" style={{ width: '30rem' }}>
-                    <Form.Control type="file" selected={photo} onChange={e => setPhoto(e.target.value)}  />
+                    <Form.Control type="file" selected={photo} onChange={e => setPhoto(e.target.files[0].name)}  />
                     <Form.Control type="text" placeholder="Title of your advertisement" {...register("title", { required: true, minLength: 10 })} value={title} onChange={e => setTitle(e.target.value)}/>
                     {errors.title && <small className="d-block form-text text-danger mt-2">Title is too short (min is 10 signs)</small>}
                     <Form.Control as="textarea" rows={5} placeholder="Describe your advertisement" {...register("description", { required: true, minLength: 20 })} value={description} onChange={e => setDescription(e.target.value)} />

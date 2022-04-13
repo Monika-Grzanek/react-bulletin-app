@@ -2,9 +2,11 @@ import {combineReducers, createStore, compose, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 import initialState from './initialState';
 import postsReducer from './postsRedux';
+import usersReducer from './usersRedux';
 
 const subreducers = {
-  posts: postsReducer
+  posts: postsReducer, 
+  users: usersReducer
 }
 
 const reducer = combineReducers(subreducers);

@@ -5,14 +5,26 @@ import { Card, Button } from "react-bootstrap";
 import { DateToStr } from './../../../utils/DateToString';
 import NavBar from "../NavBar/NavBar";
 import { useState } from "react";
+import {getUser} from './../../../redux/usersRedux';
 
 const Post = () => {
     const {id} = useParams();
     const postData = useSelector(state => getPostById(state, id));
+    const userData = useSelector(getUser);
     //if(!postData) return <Navigate to='/' />
 
-    const [isAuthor, setIsAuthor] = useState(true);
+    const [isAuthor, setIsAuthor] = useState(false);
     const [isAdmin, setIsAdmin] = useState(false);
+
+    if(userData.role === 'admin'){
+        setIsAdmin(true)
+    } else if(userData.role !== 'admin') {
+        setIsAdmin(false)
+    } else if(userData.idUser === postData.idUser) {
+        setIsAuthor(true)
+    } else if(userData.role !== postData.idUser) {
+        setIsAuthor(false)
+    }
 
     return(
         <>

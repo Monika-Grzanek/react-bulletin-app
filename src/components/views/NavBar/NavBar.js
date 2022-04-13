@@ -1,20 +1,28 @@
 import { Navbar, Nav, Container } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate} from 'react-router-dom';
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {changeUserStatus, getUser} from './../../../redux/usersRedux';
 
 const NavBar = () => {
-    const [logged, setLogged] = useState(true);
+    const [isLogged, setIsLogged] = useState(false);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const userData = useSelector(getUser);
 
-    const logIn = e => {
-        e.preventDeafault();
-        setLogged(true);
-    }
-    
-    const logOut = e => {
-        e.preventDeafault();
-        setLogged(false);
-        console.log('test')
-    }
+    const handleLogIn = userData => {
+        dispatch(changeUserStatus({...userData, logged: true}))
+        setIsLogged(true);
+        navigate('/'); 
+        console.log('userData', userData)
+    };
+
+    const handleLogOut = userData => {
+        dispatch(changeUserStatus({...userData, logged: false}))
+        setIsLogged(false);
+        navigate('/'); 
+        console.log('userData', userData)
+    };
 
     return(
         <Navbar bg="primary" variant="dark" className="mt-4 mb-4 rounded">
@@ -22,10 +30,10 @@ const NavBar = () => {
                 <Navbar.Brand >Bulletin Board</Navbar.Brand>
                 <Nav className="justify-content-end">
                     <Nav.Link as={NavLink} to='/'>Home</Nav.Link>
-                    {!logged && <Nav.Link as={NavLink} to='www.google.pl' onSubmit={logIn}>Log in</Nav.Link>}
-                    {logged && <Nav.Link as={NavLink} to='/post/add'>Add post</Nav.Link>}
-                    {logged && <Nav.Link as={NavLink} to='/myposts'>My posts</Nav.Link>}
-                    {logged && <Nav.Link onSubmit={logOut} as={NavLink} to="/" >Log out</Nav.Link>}
+                    {!isLogged && <Nav.Link as={NavLink} onClick={handleLogIn} to='/'>Log in</Nav.Link>}
+                    {isLogged && <Nav.Link as={NavLink} to='/post/add'>Add post</Nav.Link>}
+                    {isLogged && <Nav.Link as={NavLink} to='/myposts'  >My posts</Nav.Link>}
+                    {isLogged && <Nav.Link  onClick={handleLogOut} as={NavLink} to="/" >Log out</Nav.Link>}
                 </Nav>
             </Container>
         </Navbar>
