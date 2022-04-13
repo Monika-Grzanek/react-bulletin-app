@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {changeUserStatus, getUser} from './../../../redux/usersRedux';
 
 const NavBar = () => {
-    const [isLogged, setIsLogged] = useState(false);
+    const [isLogged, setIsLogged] = useState(true);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const userData = useSelector(getUser);
@@ -14,14 +14,14 @@ const NavBar = () => {
         dispatch(changeUserStatus({...userData, logged: true}))
         setIsLogged(true);
         navigate('/'); 
-        console.log('userData', userData)
+        console.log('test login')
     };
 
     const handleLogOut = userData => {
         dispatch(changeUserStatus({...userData, logged: false}))
         setIsLogged(false);
         navigate('/'); 
-        console.log('userData', userData)
+        console.log('test logout')
     };
 
     return(
