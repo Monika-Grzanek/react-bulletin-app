@@ -5,7 +5,6 @@ export const getAllPosts = state => state.posts.data;
 export const getPostById = ({ posts }, id) => posts.data.find(post => post.id === id);
 export const getPostsByAuthor = ({posts}) => posts.data.filter(post => post.idUser === posts.user.idUser);
 
-
 /* action name creator */
 const reducerName = 'posts';
 const createActionName = name => `app/${reducerName}/${name}`;

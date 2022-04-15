@@ -18,10 +18,10 @@ const Post = () => {
 
     if(userData.role === 'admin'){
         setIsAdmin(true)
-    } else if(userData.role !== 'admin') {
-        setIsAdmin(false)
     } else if(userData.idUser === postData.idUser) {
         setIsAuthor(true)
+    } else if(userData.role !== 'admin') {
+        setIsAdmin(false)
     } else if(userData.role !== postData.idUser) {
         setIsAuthor(false)
     }

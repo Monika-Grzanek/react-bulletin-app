@@ -10,14 +10,14 @@ const NavBar = () => {
     const navigate = useNavigate();
     const userData = useSelector(getUser);
 
-    const handleLogIn = userData => {
+    const handleLogIn = () => {
         dispatch(changeUserStatus({...userData, logged: true}))
         setIsLogged(true);
         navigate('/'); 
-        console.log('test login')
+        console.log('test login', userData)
     };
 
-    const handleLogOut = userData => {
+    const handleLogOut = () => {
         dispatch(changeUserStatus({...userData, logged: false}))
         setIsLogged(false);
         navigate('/'); 
