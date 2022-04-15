@@ -5,7 +5,13 @@ import { getAllPosts } from './../../../redux/postsRedux';
 import styles from './Homepage.module.scss'
 
 const Homepage = () => {
+
+    const sortByUpdate = (a, b) => {
+        return (b.updatedDate - a.updatedDate)
+    };
     const posts = useSelector(getAllPosts);
+    const sortedPost = posts.sort(sortByUpdate);
+
     return(
         <div>
             <div>
@@ -13,7 +19,7 @@ const Homepage = () => {
             </div>
             <Container>
                 <Row>
-                    {posts.map(post => <Posts key={post.id} {...post} /> )}
+                    {sortedPost.map(post => <Posts key={post.id} {...post} /> )}
                 </Row>
             </Container>
         </div>    
