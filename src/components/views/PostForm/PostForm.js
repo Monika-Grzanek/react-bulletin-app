@@ -16,7 +16,7 @@ const PostForm = ({actionText, action, ...post}) => {
     const [status, setStatus] = useState(post.status || '');
     const [author, setAuthor] = useState(post.author || '');
     const [contact, setContact] = useState(post.contact || '');
-    const [photo, setPhoto] = useState(post.photo || '');
+    const [photo, setPhoto] = useState(post.photo || null);
     const [publishedDate, setPublishedDate] = useState(post.publishedDate || '');
     const [updatedDate, setUpdatedDate] = useState(post.updatedDate || '');
 
@@ -50,8 +50,6 @@ const PostForm = ({actionText, action, ...post}) => {
                     {errors.email && <small className="d-block form-text text-danger mt-2">Email is requied</small>}
                     <Form.Control type="number" placeholder="Phone number" {...register("phone", { required: true })} value={contact} onChange={e => setContact(e.target.value)}/>
                     {errors.phone && <small className="d-block form-text text-danger mt-2">Phone number is required</small>}
-                    <Form.Label > Published date: <input type="date" disabled {...register("publishedDate", { required: false })} selected={publishedDate} onChange={(e) => setPublishedDate(e.target.value)}/></Form.Label> 
-                    <Form.Label>Update date: <input type="date" disabled {...register("updatedDate", { required: false })} selected={updatedDate} onChange={(e) => setPublishedDate(e.target.value)} /></Form.Label>   
                 </Form.Group>
                 <Button variant="primary" type="submit">
                     {actionText}

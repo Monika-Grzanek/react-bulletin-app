@@ -1,6 +1,6 @@
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import { NavLink, useNavigate} from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {changeUserStatus, getUser} from './../../../redux/usersRedux';
 
@@ -14,15 +14,14 @@ const NavBar = () => {
         dispatch(changeUserStatus({...userData, logged: true}))
         setIsLogged(true);
         navigate('/'); 
-        console.log('test login', userData)
     };
 
     const handleLogOut = () => {
         dispatch(changeUserStatus({...userData, logged: false}))
         setIsLogged(false);
         navigate('/'); 
-        console.log('test logout')
     };
+    
 
     return(
         <Navbar bg="primary" variant="dark" className="mt-4 mb-4 rounded">

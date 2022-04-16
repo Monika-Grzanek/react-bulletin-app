@@ -4,7 +4,7 @@ import { getPostById } from "../../../redux/postsRedux";
 import { Card, Button } from "react-bootstrap";
 import { DateToStr } from './../../../utils/DateToString';
 import NavBar from "../NavBar/NavBar";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {getUser} from './../../../redux/usersRedux';
 
 const Post = () => {
@@ -16,15 +16,18 @@ const Post = () => {
     const [isAuthor, setIsAuthor] = useState(false);
     const [isAdmin, setIsAdmin] = useState(false);
 
-    if(userData.role === 'admin'){
-        setIsAdmin(true)
-    } else if(userData.idUser === postData.idUser) {
-        setIsAuthor(true)
-    } else if(userData.role !== 'admin') {
-        setIsAdmin(false)
-    } else if(userData.role !== postData.idUser) {
-        setIsAuthor(false)
-    }
+    useEffect(() => {
+        if(userData.role === 'admin'){
+            setIsAdmin(true)
+        } else if(userData.idUser === postData.idUser) {
+            setIsAuthor(true)
+        } else if(userData.role !== 'admin') {
+            setIsAdmin(false)
+        } else if(userData.role !== postData.idUser) {
+            setIsAuthor(false)
+        }
+    }, [])
+
 
     return(
         <>
