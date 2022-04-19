@@ -2,11 +2,12 @@ const mongoose = require('mongoose');
 
 const postSchema = new mongoose.Schema({
   author: { type: String, required: true },
-  created: { type: Date, required: true },
-  updated: { type: Date, required: true },
+  publishedDate: { type: Date, required: true },
+  updatedDate: { type: Date, required: true },
   status: { type: String, required: true },
   title: { type: String, required: true },
-  text: { type: String, required: true },
+  description: { type: String, required: true },
+  userId: {type: String, required: true},
   photo: { type: String },
   price: { type: Number },
   phone: { type: String },

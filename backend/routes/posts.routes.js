@@ -6,9 +6,9 @@ const Post = require('../models/post.model');
 router.get('/posts', async (req, res) => {
   try {
     const result = await Post
-      .find({status: 'published'})
-      .select('author created title photo')
-      .sort({created: -1});
+      .find({status: 'Published'})
+      .select('author publishedDate title photo')
+      .sort({updatedDate: -1});
     if(!result) res.status(404).json({ post: 'Not found' });
     else res.json(result);
   }
@@ -29,4 +29,14 @@ router.get('/posts/:id', async (req, res) => {
   }
 });
 
+
+router.post('/posts/add', async (req, res) => {
+  try {
+    const newPost = await new Post(req.body);
+    await newPost.save();
+    res.json(newPost);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 module.exports = router;
