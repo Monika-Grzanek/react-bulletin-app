@@ -8,8 +8,8 @@ import { useState, useEffect } from "react";
 import {getUser} from './../../../redux/usersRedux';
 
 const Post = () => {
-    const {id} = useParams();
-    const postData = useSelector(state => getPostById(state, id));
+    const {_id} = useParams();
+    const postData = useSelector(state => getPostById(state, _id));
     const userData = useSelector(getUser);
     //if(!postData) return <Navigate to='/' />
 
@@ -48,7 +48,7 @@ const Post = () => {
                         <p><b>Contact: </b>{postData.contact}</p>
                     </Card.Text>
                     </Card.Body>
-                    {(isAdmin || isAuthor) && <Button as={Link} to={`/post/${postData.id}/edit`}>Edit post</Button>}
+                    {(isAdmin || isAuthor) && <Button as={Link} to={`/post/${postData._id}/edit`}>Edit post</Button>}
                 </Card>
             </div>
         </>

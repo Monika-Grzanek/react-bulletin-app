@@ -19,7 +19,7 @@ const Homepage = () => {
             </div>
             <Container>
                 <Row>
-                    {sortedPost.map(post => <Posts key={post.id} {...post} /> )}
+                    {sortedPost.map(post => <Posts key={post._id} {...post} /> )}
                 </Row>
             </Container>
         </div>    

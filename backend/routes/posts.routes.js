@@ -17,10 +17,10 @@ router.get('/posts', async (req, res) => {
   }
 });
 
-router.get('/posts/:id', async (req, res) => {
+router.get('/posts/:_id', async (req, res) => {
   try {
     const result = await Post
-      .findById(req.params.id);
+      .findById(req.params._id);
     if(!result) res.status(404).json({ post: 'Not found' });
     else res.json(result);
   }

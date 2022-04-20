@@ -16,7 +16,7 @@ const MyPosts = () => {
             <h1 className={styles.title}>My Posts:</h1>
             <Container>
                 <Row>
-                    {postByAuthor.map(post => <Posts key={post.id} {...post} /> )}
+                    {postByAuthor.map(post => <Posts key={post._id} {...post} /> )}
                 </Row>
             </Container>
         </>

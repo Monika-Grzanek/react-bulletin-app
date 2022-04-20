@@ -8,7 +8,7 @@ const Posts = ({...post}) => {
             <Card style={{ width: '23rem' }}>
             <Card.Img variant="top" height={240} src={post.photo} />
                 <Card.Body >
-                    <Card.Title><Link to={`/post/${post.id}`} className={styles.linkTitle}> {post.title}</Link></Card.Title>
+                    <Card.Title><Link to={`/post/${post._id}`} className={styles.linkTitle}> {post.title}</Link></Card.Title>
                     <Card.Text style={{ height: '6rem' }}>{post.description}</Card.Text>
                 </Card.Body>
             </Card>
