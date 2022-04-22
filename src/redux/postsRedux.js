@@ -45,11 +45,25 @@ export const editPostRequest = (newEditedPost) => {
   }
 };
 
+export const addPostRequest = (newPost) => {
+  return (dispatch) => {
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newPost),
+    };
+    fetch(API_URL + '/post/add', options)
+      .then(() => dispatch(addPost(newPost)))
+  }
+}
+
 /* reducer */
 const postsReducer = (statePart = [], action = {}) => {
   switch (action.type) {
     case ADD_POST:
-      return {...statePart, data: [...statePart.data, {id: shortid(), ...action.payload}]} ;
+      return {...statePart, data: [...statePart.data, {_id: shortid(), ...action.payload}]} ;
       case EDIT_POST:
         return {...statePart, data: statePart.data.map(post => (post._id === action.payload._id ? { ...post, ...action.payload } : post))};
       case UPDATE_POSTS:

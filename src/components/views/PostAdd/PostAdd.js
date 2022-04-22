@@ -2,7 +2,7 @@ import PostForm from "../PostForm/PostForm";
 import NavBar from "../NavBar/NavBar";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { addPost } from "../../../redux/postsRedux";
+import { addPostRequest } from "../../../redux/postsRedux";
 
 
 const PostAdd = () => {
@@ -10,7 +10,7 @@ const PostAdd = () => {
     const dispatch = useDispatch();
 
     const handleSubmit = post => {
-        dispatch(addPost({...post}));
+        dispatch(addPostRequest({...post}));
         navigate('/');
     }
 

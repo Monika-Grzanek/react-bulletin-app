@@ -22,7 +22,7 @@ const PostForm = ({actionText, action, ...post}) => {
 
     const handleSubmit = e => {
         const data = { title, description, price, location, status, author, contact, photo };
-        if (post.id) data.updatedDate = new Date();
+        if (post._id) data.updatedDate = new Date();
         else {
             data.publishedDate = new Date();
             data.updatedDate = data.publishedDate;
