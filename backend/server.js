@@ -14,15 +14,15 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(formidable({ uploadDir: './public/uploads/' }, [{
+/*app.use(formidable({ uploadDir: './public/uploads/' }, [{
   event: 'fileBegin', // on every file upload...
     action: (req, res, next, name, file) => {
       const fileName = uniqid() + '.' + file.name.split('.')[1];
       file.path = __dirname + '/public/uploads/photo_' + fileName; // ...move the file to public/uploads with unique name
     }
   },
-]));
-app.use(helmet());
+]));*/
+
 
 /* API ENDPOINTS */
 app.use('/api', postsRoutes);

@@ -47,12 +47,15 @@ export const editPostRequest = (newEditedPost) => {
 
 export const addPostRequest = (newPost) => {
   return (dispatch) => {
+
+    const fd = new FormData();
+    for(const key in newPost) {
+      fd.append(key, newPost[key]);
+    }
+
     const options = {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(newPost),
+      body: fd,
     };
     fetch(API_URL + '/post/add', options)
       .then(() => dispatch(addPost(newPost)))

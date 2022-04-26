@@ -17,6 +17,8 @@ const Post = () => {
     const [isAdmin, setIsAdmin] = useState(false);
 
     useEffect(() => {
+        if (!userData || !postData) return;
+  
         if(userData.role === 'admin'){
             setIsAdmin(true)
         } else if(userData.idUser === postData.idUser) {
@@ -26,9 +28,9 @@ const Post = () => {
         } else if(userData.role !== postData.idUser) {
             setIsAuthor(false)
         }
-    }, [])
+    }, [userData, postData])
 
-
+    if (!postData) return <div>Loading...</div>
     return(
         <>
             <NavBar />

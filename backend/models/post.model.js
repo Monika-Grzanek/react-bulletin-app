@@ -7,7 +7,6 @@ const postSchema = new mongoose.Schema({
   status: { type: String, required: true },
   title: { type: String, required: true },
   description: { type: String, required: true },
-  userId: {type: String, required: true},
   photo: { type: String },
   price: { type: Number },
   phone: { type: String },
