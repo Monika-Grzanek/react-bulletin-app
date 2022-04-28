@@ -27,17 +27,17 @@ exports.getPostById = async (req, res) => {
 
 exports.addNewPost = async (req, res) => {
     try {
-        const { title, description, location, author, contact, status } = req.body;
+        const { title, description, location, author, contact, } = req.body;
         const file = req.file
         const fileExt = file.path.split('.').slice(-1)[0];
     
-        const titlePattern = new RegExp(/(<\s*(strong|em)*>(([A-z]|\s)*)<\s*\/\s*(strong|em)>)|(([A-z]|\s|\.)*)/, 'g');
+        const titlePattern = new RegExp(/^[a-z\d\-_\s]+$/, 'g');
         const titleMatched = title.match(titlePattern).join('');
     
-        const descriptionPattern = new RegExp(/(<\s*(strong|em)*>(([A-z]|\s)*)<\s*\/\s*(strong|em)>)|(([A-z]|\s|\.)*)/, 'g');
+        const descriptionPattern = new RegExp(/^[a-z\d\-_\s]+$/, 'g');
         const descriptionMatched = description.match(descriptionPattern).join('');
 
-        const locationPattern = new RegExp(/(<\s*(strong|em)*>(([A-z]|\s)*)<\s*\/\s*(strong|em)>)|(([A-z]|\s|\.)*)/, 'g');
+        const locationPattern = new RegExp(/^[a-z\d\-_\s]+$/, 'g');
         const locationMatched = location.match(locationPattern).join('');
     
         const authorPattern = new RegExp(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/, 'g');
@@ -46,10 +46,10 @@ exports.addNewPost = async (req, res) => {
         const contactPattern = new RegExp(/^[0-9]*$/);
         const contactMatched = contact.match(contactPattern).join('');
     
-        if(status && title && author && description && location && contact && file && (fileExt === 'jpg' || fileExt === 'gif' || fileExt === 'png') && titleMatched.length === title.length && authorMatched.length === author.length && descriptionMatched.length === description.length && locationMatched.length === location.length && contactMatched.length === contact.length) { // if fields are not empty...
+        if(title && author && description && location && contact && file && (fileExt === 'jpg' || fileExt === 'gif' || fileExt === 'png') && titleMatched.length === title.length && authorMatched.length === author.length && descriptionMatched.length === description.length && locationMatched.length === location.length && contactMatched.length === contact.length) { // if fields are not empty...
     
           const fileName = file.path.split('\\').slice(-1)[0]; // cut only filename from full path, e.g. C:/test/abc.jpg -> abc.jpg
-          const newPost = await new Post({ title, description, location, author, contact, photo: fileName, status, publishedDate: Date.now(), updatedDate: Date.now() });
+          const newPost = await new Post({ title, description, location, author, contact, photo: fileName, publishedDate: Date.now(), updatedDate: Date.now(), status: 'Published' });
           await newPost.save();
           res.json(newPost);
           
